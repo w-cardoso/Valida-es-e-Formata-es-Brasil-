@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Alura Food Application</string>
+    <string name="validator_starndard_txt_field_required">Campo Obrigatório</string>
+    <string name="validator_cpf_error_eleven_digits">O CPF precisa ter 11 digitos</string>
+    <string name="validator_cpf_error_cpf_invalid_calculation">Digite um CPF válido</string>
+</resources>
