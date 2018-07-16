@@ -6,12 +6,12 @@ import android.widget.EditText;
 
 import fiap.com.br.alurafoodapplication.R;
 
-public class ValidatorStandard {
+public class StandardValidator {
     private final TextInputLayout tilField;
     private final EditText field;
     private final Context context;
 
-    public ValidatorStandard(TextInputLayout tilField, Context context) {
+    public StandardValidator(TextInputLayout tilField, Context context) {
         this.tilField = tilField;
         this.field = tilField.getEditText();
         this.context = context;

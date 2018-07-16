@@ -4,27 +4,27 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
-import fiap.com.br.alurafoodapplication.Mask;
+import fiap.com.br.alurafoodapplication.CpfMask;
 import fiap.com.br.alurafoodapplication.R;
 
-import static fiap.com.br.alurafoodapplication.Mask.CPF_MASK;
+import static fiap.com.br.alurafoodapplication.CpfMask.CPF_MASK;
 
-public class ValidatorCpf {
+public class CpfValidator {
     private final TextInputLayout tilCpf;
     private final EditText fieldCpf;
-    private final ValidatorStandard validatorStandard;
+    private final StandardValidator validatorStandard;
     private final Context context;
 
 
-    public ValidatorCpf(TextInputLayout tilCpf, Context context) {
+    public CpfValidator(TextInputLayout tilCpf, Context context) {
         this.tilCpf = tilCpf;
         this.fieldCpf = tilCpf.getEditText();
-        this.validatorStandard = new ValidatorStandard(tilCpf, context);
+        this.validatorStandard = new StandardValidator(tilCpf, context);
         this.context = context;
     }
 
     private boolean validateFieldNumberOfDigits(String cpf) {
-        //String unmaskCpf = Mask.unmask(cpf);
+        //String unmaskCpf = CpfMask.unmask(cpf);
         if (cpf.length() != 11) {
             tilCpf.setError(context.getString(R.string.validator_cpf_error_eleven_digits));
             return false;
@@ -34,7 +34,7 @@ public class ValidatorCpf {
     }
 
     private boolean validadeCalculationCpf(String cpf) {
-        //cpf = Mask.unmask(cpf);
+        //cpf = CpfMask.unmask(cpf);
         if (cpf.equals("00000000000") || cpf.equals("11111111111")
                 || cpf.equals("22222222222") || cpf.equals("33333333333")
                 || cpf.equals("44444444444") || cpf.equals("55555555555")
@@ -91,6 +91,6 @@ public class ValidatorCpf {
     }
 
     private void addMask(String cpf) {
-        fieldCpf.setText(Mask.mask(CPF_MASK, cpf));
+        fieldCpf.setText(CpfMask.mask(CPF_MASK, cpf));
     }
 }
