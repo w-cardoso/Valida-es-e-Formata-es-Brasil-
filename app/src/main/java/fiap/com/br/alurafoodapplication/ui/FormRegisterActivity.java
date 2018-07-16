@@ -16,6 +16,7 @@ import fiap.com.br.alurafoodapplication.mask.CpfMask;
 import fiap.com.br.alurafoodapplication.mask.PhoneMask;
 import fiap.com.br.alurafoodapplication.validator.CpfValidator;
 import fiap.com.br.alurafoodapplication.validator.EmailValidator;
+import fiap.com.br.alurafoodapplication.validator.PasswordValidator;
 import fiap.com.br.alurafoodapplication.validator.PhoneValidator;
 import fiap.com.br.alurafoodapplication.validator.StandardValidator;
 import fiap.com.br.alurafoodapplication.validator.Validator;
@@ -69,7 +70,17 @@ public class FormRegisterActivity extends AppCompatActivity {
 
     private void setUpFieldPassword() {
         TextInputLayout tilPassword = findViewById(R.id.form_til_password);
-        validateEmptyField(tilPassword);
+        EditText fieldPassword = tilPassword.getEditText();
+        final PasswordValidator validator = new PasswordValidator(tilPassword, getApplicationContext());
+        validators.add(validator);
+        fieldPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validator.isValid();
+                }
+            }
+        });
     }
 
     private void setUpFieldEmail() {
