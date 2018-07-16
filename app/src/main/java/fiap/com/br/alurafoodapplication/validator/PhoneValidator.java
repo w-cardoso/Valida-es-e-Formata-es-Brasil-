@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
+import fiap.com.br.alurafoodapplication.R;
 import fiap.com.br.alurafoodapplication.mask.PhoneMask;
 
 public class PhoneValidator implements Validator {
@@ -24,7 +25,7 @@ public class PhoneValidator implements Validator {
     private boolean validateNumberOfDigits(String phone) {
         int digitos = phone.length();
         if (digitos < 10 || digitos > 11) {
-            tilPhone.setError("Telefone deve ter entre 10 à 11 digitos");
+            tilPhone.setError(context.getString(R.string.form_txt_error_phone));
             return false;
         }
         return true;

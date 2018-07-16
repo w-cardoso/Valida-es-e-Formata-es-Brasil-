@@ -3,4 +3,7 @@
     <string name="validator_starndard_txt_field_required">Campo Obrigatório</string>
     <string name="validator_cpf_error_eleven_digits">O CPF precisa ter 11 digitos</string>
     <string name="validator_cpf_error_cpf_invalid_calculation">Digite um CPF válido</string>
+    <string name="form_txt_error_password">A senha deve ter entre 8 e 16 digitos(letras, números e caracteres especiais)</string>
+    <string name="form_txt_error_email">O E-mail digitado é invalido</string>
+    <string name="form_txt_error_phone">Telefone deve ter entre 10 à 11 digitos</string>
 </resources>

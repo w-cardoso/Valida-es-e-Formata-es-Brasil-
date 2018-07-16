@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
+import fiap.com.br.alurafoodapplication.R;
+
 public class PasswordValidator implements Validator {
     private final TextInputLayout tilPassword;
     private final EditText fieldPassword;
@@ -18,10 +20,10 @@ public class PasswordValidator implements Validator {
     }
 
     private boolean standardValidate(String password) {
-        if (password.matches("((?=.*\\d)(?=.*[A-Z])(?=.*\\W).{8})")) {
+        if (password.matches("((?=.*\\d)(?=.*[A-Z])(?=.*\\W).{8,16})")) {
             return true;
         }
-        tilPassword.setError("A senha deve ter 8 caracteres(letras, números e caracteres especiais)");
+        tilPassword.setError(context.getString(R.string.form_txt_error_password));
         return false;
 
     }

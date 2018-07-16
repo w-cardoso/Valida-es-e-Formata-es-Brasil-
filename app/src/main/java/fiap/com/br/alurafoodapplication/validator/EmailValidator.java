@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
+import fiap.com.br.alurafoodapplication.R;
+
 public class EmailValidator implements Validator {
     private final TextInputLayout tilEmail;
     private final EditText fieldEmail;
@@ -23,7 +25,7 @@ public class EmailValidator implements Validator {
         if (email.matches(".+@.+\\..+")) {
             return true;
         }
-        tilEmail.setError("E-mail inválido");
+        tilEmail.setError(context.getString(R.string.form_txt_error_email));
         return false;
     }
 
