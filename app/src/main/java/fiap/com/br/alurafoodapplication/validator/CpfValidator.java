@@ -4,12 +4,12 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
-import fiap.com.br.alurafoodapplication.CpfMask;
+import fiap.com.br.alurafoodapplication.mask.CpfMask;
 import fiap.com.br.alurafoodapplication.R;
 
-import static fiap.com.br.alurafoodapplication.CpfMask.CPF_MASK;
+import static fiap.com.br.alurafoodapplication.mask.CpfMask.CPF_MASK;
 
-public class CpfValidator {
+public class CpfValidator implements Validator {
     private final TextInputLayout tilCpf;
     private final EditText fieldCpf;
     private final StandardValidator validatorStandard;
@@ -84,9 +84,10 @@ public class CpfValidator {
     public boolean isValid() {
         if (!validatorStandard.isValid()) return false;
         String cpf = fieldCpf.getText().toString();
-        if (!validateFieldNumberOfDigits(cpf)) return false;
-        if (!validadeCalculationCpf(cpf)) return false;
-        addMask(cpf);
+        String cpfUnMask = CpfMask.unmask(cpf);
+        if (!validateFieldNumberOfDigits(cpfUnMask)) return false;
+        if (!validadeCalculationCpf(cpfUnMask)) return false;
+        addMask(cpfUnMask);
         return true;
     }
 

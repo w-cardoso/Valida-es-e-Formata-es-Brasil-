@@ -1,4 +1,4 @@
-package fiap.com.br.alurafoodapplication;
+package fiap.com.br.alurafoodapplication.mask;
 
 public class PhoneMask {
     public String phoneMask(String phone) {

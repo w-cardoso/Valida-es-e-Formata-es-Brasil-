@@ -1,4 +1,4 @@
-package fiap.com.br.alurafoodapplication;
+package fiap.com.br.alurafoodapplication.mask;
 
 import android.text.Editable;
 import android.text.TextWatcher;

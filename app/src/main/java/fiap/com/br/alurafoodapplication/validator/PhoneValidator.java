@@ -4,9 +4,9 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
-import fiap.com.br.alurafoodapplication.PhoneMask;
+import fiap.com.br.alurafoodapplication.mask.PhoneMask;
 
-public class PhoneValidator {
+public class PhoneValidator implements Validator {
 
     private final TextInputLayout tilPhone;
     private final EditText fieldPhone;
@@ -33,8 +33,9 @@ public class PhoneValidator {
     public boolean isValid() {
         if (!standardValidator.isValid()) return false;
         String phone = fieldPhone.getText().toString();
-        if (!validateNumberOfDigits(phone)) return false;
-        addMask(phone);
+        String phoneWithoutMask = phoneMask.unMaskPhone(phone);
+        if (!validateNumberOfDigits(phoneWithoutMask)) return false;
+        addMask(phoneWithoutMask);
         return true;
     }
 
