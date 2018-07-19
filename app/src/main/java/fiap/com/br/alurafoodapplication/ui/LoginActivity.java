@@ -1,17 +1,20 @@
 package fiap.com.br.alurafoodapplication.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fiap.com.br.alurafoodapplication.R;
+import fiap.com.br.alurafoodapplication.dao.ClientDao;
 import fiap.com.br.alurafoodapplication.mask.CpfMask;
 import fiap.com.br.alurafoodapplication.validator.CpfValidator;
 import fiap.com.br.alurafoodapplication.validator.PasswordValidator;
@@ -29,7 +32,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setUpFieldCpf();
         setUpFieldPassword();
+        setUpButtonSignIn();
         setUpButtonRegister();
+    }
+
+    private void setUpButtonRegister() {
+        TextView btnRegister = findViewById(R.id.login_btn_register);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, FormRegisterActivity.class));
+            }
+        });
     }
 
 
@@ -67,18 +81,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void setUpButtonRegister() {
-        Button btnRegister = findViewById(R.id.login_btn_register);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+    private void setUpButtonSignIn() {
+        Button btnSignIn = findViewById(R.id.login_btn_sign_in);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean formIsValid = validAllFields();
                 if (formIsValid) {
-                    Toast.makeText(LoginActivity.this, "DEU CERTO", Toast.LENGTH_LONG).show();
+                    ClientDao clientDao = new ClientDao(LoginActivity.this);
+                    boolean isSuccess = clientDao.validateLogin(fieldCpf.getText().toString(), fieldPassword.getText().toString());
+                    if (!isSuccess) {
+                        Toast.makeText(LoginActivity.this, "Usuario e senha não  conferem", Toast.LENGTH_LONG).show();
+                    } else {
+                        startActivity(new Intent(LoginActivity.this, UsersListActivity.class));
+                    }
+
                 }
             }
         });
     }
+
 
     private boolean validAllFields() {
         boolean formIsValid = true;
